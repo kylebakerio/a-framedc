@@ -1,3 +1,9 @@
+Another old project being called into service... this demo was at A-Frame 0.4.0, but it works until pre 1.2.0 in its current form, with just the removal of a jquery call switched out to modern fetch API. 1.2.0 throws infamous `THREE Geometry` errors, predictably.
+
+See latest demo here:
+https://glitch.com/edit/#!/a-framedc-charts-1?path=index.html%3A17%3A7
+
+# Original Readme:
 # a-framedc
 3D charts built with A-frame. A-framedc ships with a set of A-Frame components and a library to use them in easier way.It provides the following features:
 
