@@ -291,11 +291,17 @@ AFRAME.registerComponent('aframe-grid', {
                 if (that.data.src) {
                     //taking from json data.
                     if (that.data.src.constructor === String) {
-                        $.getJSON(that.data.src, function (response) {
-                            that.el._data = response;
+                        // was $.getJSON, vestigal jquery
+                        fetch(that.data.src)
+                        .then(function (response){
+                            return response.json();
+                        })
+                        .then(function (json){
+                            that.el._data = json;
                             that.initChart();
                             that.reload = false;
                             that.el.setAttribute('visible', true);
+                            // console.log(json);
                         });
                     } else if (that.data.src.constructor === Array) {
                         that.el._data = that.data.src;
@@ -741,7 +747,7 @@ AFRAME.registerComponent('barchart3d', {
         depth: { default: 10 },
         color: { default: '#00FF00' },
         title: { default: "" },
-        src: { type: 'asset', default: 'https://rawgit.com/fran-aguilar/a-framedc/master/examples/data/lib/scm-commits-filtered.json' }
+        src: { type: 'asset', default: '/scm-commits-filtered.json' }
     },
     onDataLoaded: utils.onDataLoaded,
 
@@ -1088,7 +1094,7 @@ AFRAME.registerComponent('barchart', {
         depth: { default: 0.5 },
         color: { default: '#00FF00' },
         title: { default: "" },
-        src: { type: 'asset', default: 'https://rawgit.com/fran-aguilar/a-framedc/master/examples/data/lib/scm-commits-filtered.json' }
+        src: { type: 'asset', default: '/scm-commits-filtered.json' }
     },
     onDataLoaded: utils.onDataLoaded,
     init: utils.default_init,
@@ -1323,7 +1329,7 @@ AFRAME.registerComponent('barchartstack', {
         color: { default: '#00FF00' },
 
         title: { default: "" },
-        src: { type: 'asset', default: 'https://rawgit.com/fran-aguilar/a-framedc/master/examples/data/lib/scm-commits-filtered.json' }
+        src: { type: 'asset', default: '/scm-commits-filtered.json' }
     },
 
   /**
@@ -2416,7 +2422,7 @@ AFRAME.registerComponent('smoothcurvechart', {
         depth: { default: 0.5 },
         color: { default: '#00FF00' },
         title: {default:""},
-        src: { type: 'asset', default: 'https://rawgit.com/fran-aguilar/a-framedc/master/examples/data/lib/scm-commits-filtered.json' }
+        src: { type: 'asset', default: '/scm-commits-filtered.json' }
     },
     onDataLoaded: utils.onDataLoaded,
   
